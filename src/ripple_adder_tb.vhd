@@ -48,6 +48,12 @@ begin
        -- Test all ones input
        w_addends <= x"FF"; w_Cin <= '1'; wait for 10 ns;
 	       assert (w_sum = x"F" and w_Cout = '1') report "bad with ones" severity failure;
+	   w_addends <= x"00"; w_Cin <= '1'; wait for 10 ns;
+	       assert (w_sum = x"1" and w_Cout = '0') report "bad with just carryin" severity failure;
+	   w_addends <= x"44"; w_Cin <= '1'; wait for 10 ns;
+	       assert (w_sum = x"9" and w_Cout = '0') report "bad with 4 and 4 and carryin" severity failure;
+	   w_addends <= x"FF"; w_Cin <= '0'; wait for 10 ns;
+	       assert (w_sum = x"E" and w_Cout = '1') report "bad with ones no carry" severity failure;
        -- TODO, a few other test cases
 	
 		wait; -- wait forever
